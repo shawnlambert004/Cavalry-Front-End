@@ -3,22 +3,26 @@ import './Home.css'
 
 const Home = () => {
   const [data1, setData] = useState([]);
-  const [coin_id, set_coin] = useState();
+  const [coinSym, set_coinSym] = useState([]);
+  const [currentPrice, set_currentPrice] = useState([]);
+  const [priceChange24, set_priceChange24] = useState([]);
+  const [coiny, set_coin] = useState([]);
+  const [result, setRes] = useState(false);
 
   const SearchCrypto = async () => {
-    const now = new Date();
-    const start = new Date(now.getTime() - 24 * 60 * 60 * 1000); 
-    const url = `https://api.coinpaprika.com/v1/coins/${coin_id}/ohlcv/historical?start=${start.toISOString()}&end=${now.toISOString()}&interval=24h`;
-    const options = { method: 'GET' };
-
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
+    const options = {method: 'GET', headers: {'x-cg-demo-api-key': 'CG-xaobEyQyzF4Yy7MdStgEFZzZ'}, body: undefined};
+    setRes(true)
     try {
       const response = await fetch(url, options);
       const data = await response.json();
+      set_coinSym(data.symbol);
+      set_currentPrice(data.current_price);
+      set_priceChange24(data.price_change_24h);
       console.log(data);
     } catch (error) {
       console.error(error);
     }
-
   };
   return (
     <div className='Home'>
@@ -29,14 +33,13 @@ const Home = () => {
         <button type='button' onClick={SearchCrypto}>Search</button>
       </form>
       </div>
-      <div className="currencyTable">
-        <div className="tablelayout">
-          <p className='rank'>#</p>
-          <p style={{textAlign: 'center'}}>Currency</p>
-          <p style={{textAlign: 'center'}}>Price</p>
-          <p style={{textAlign: 'center'}}>24h Change</p>
-        </div>
-      </div>
+      <table className='Table'>
+        <tr>
+          <th>Currency</th>
+          <th>Price</th>
+          <th>24h Change</th>
+        </tr>
+      </table>
     </div>
   )
 }

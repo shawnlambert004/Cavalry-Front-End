@@ -49,21 +49,14 @@
     cursor: pointer;
 }
 
-.currencyTable{
-    max-width: 800px;
-    margin: auto;
-    background: linear-gradient(rgba(84, 3, 255, 0.15), rgba(105, 2, 153, 0, 0.15));
-    border-radius: 15px;
-}
-
-.tablelayout{
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr;
-    padding: 15px 20px;
-    align-items: center;
+.Table{
+    margin: 0 auto;
+    align-self: center;
     text-align: center;
-    border-bottom: 1px solid #3c3c3c;
-    background-color: #191723;
 }
 
-
+th {
+    padding: 38px;
+    font-size: 17px;
+    border-bottom: 1px solid #1f1d2d;
+}
