@@ -55,6 +55,11 @@
     text-align: center;
 }
 
+.Table .icon {
+    width: 30px;
+
+}
+
 th {
     padding: 38px;
     font-size: 17px;
